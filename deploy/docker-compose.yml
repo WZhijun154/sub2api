@@ -167,7 +167,7 @@ services:
       redis:
         condition: service_healthy
     networks:
-      - sub2api-network
+      - dokploy-network
     healthcheck:
       test:
         [
@@ -208,7 +208,7 @@ services:
       - POSTGRES_DB=${POSTGRES_DB:-sub2api}
       - TZ=${TZ:-Asia/Shanghai}
     networks:
-      - sub2api-network
+      - dokploy-network
     healthcheck:
       test:
         [
@@ -247,7 +247,7 @@ services:
       # REDISCLI_AUTH is used by redis-cli for authentication (safer than -a flag)
       - REDISCLI_AUTH=${REDIS_PASSWORD:-}
     networks:
-      - sub2api-network
+      - dokploy-network
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -271,5 +271,5 @@ volumes:
 # Networks
 # =============================================================================
 networks:
-  sub2api-network:
-    driver: bridge
+  dokploy-network:
+    external: true
